@@ -1,0 +1,21 @@
+URLS
+http://localhost:8080/firestation?stationNumber=<station_number>
+
+http://localhost:8080/childAlert?address=<address>
+
+http://localhost:8080/phoneAlert?firestation=<firestation_number>
+
+http://localhost:8080/fire?address=<address>
+
+http://localhost:8080/flood/stations?stations=<a list of station_numbers>
+
+http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
+
+http://localhost:8080/communityEmail?city=<city>
+
+ENDPOINTS
+http://localhost:8080/person
+.
+http://localhost:8080/firestation
+
+http://localhost:8080/medicalRecord

@@ -3,16 +3,14 @@ package com.openclassrooms.safetynetApi.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.openclassrooms.safetynetApi.model.ChildAlertDTO;
+import com.openclassrooms.safetynetApi.model.dto.ChildAlertDTO;
 import com.openclassrooms.safetynetApi.model.FireStation;
 import com.openclassrooms.safetynetApi.model.Person;
+import com.openclassrooms.safetynetApi.model.dto.FireDTO;
 import com.openclassrooms.safetynetApi.repository.FireStationRepository;
 import com.openclassrooms.safetynetApi.repository.PersonRepositoryImpl;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,6 +19,7 @@ public class PersonService {
 
     private PersonRepositoryImpl personRepository;
     private FireStationRepository fsRepository;
+    Mapper mapperDTO = new Mapper();
 
     public PersonService(PersonRepositoryImpl personRepository, FireStationRepository fsRepository) {
         this.personRepository = personRepository;
@@ -32,7 +31,7 @@ public class PersonService {
         return personRepository.getPeopleList();
     }
 
-    private List<Person> fireStationPeople(int n) throws Exception {
+    public List<Person> fireStationPeople(int n) throws Exception {
 
         List<Person> allPeople = personRepository.getPeopleList();
         List<FireStation> fireStations = fsRepository.getFireStations();
@@ -51,9 +50,18 @@ public class PersonService {
 
     }
 
+    public List<FireStation> fireStationAtAddress(String address) throws Exception {
+
+        List<FireStation> fireStations = fsRepository.getFireStations();
+        List<FireStation> stationList = fireStations.stream().filter(s -> s.getAddress().equals(address)).collect(Collectors.toList());
+
+        return stationList;
+
+    }
+
     private HashMap<String, Object> countAdultsChildren(List<Person> people){
-        Mapper mapper = new Mapper();
-        List<Person> children = mapper.getChildren(people);
+
+        List<Person> children = mapperDTO.getChildren(people);
 
         long adultCount = people.size()-children.size();
 
@@ -80,10 +88,8 @@ public class PersonService {
     }
 
     public List<JsonNode> findChildAdress(String address) throws Exception {
-        List<Person> allPeople = list();
+        List<Person> peopleAtAddress = getPeopleAtAddress(address);
 
-        List<Person> peopleAtAddress = allPeople.stream().filter(c -> c.getAddress().equals(address)).collect(Collectors.toList());
-        Mapper mapperDTO = new Mapper();
         List<Person> childrenAtAdress = mapperDTO.getChildren(peopleAtAddress);
         peopleAtAddress.removeAll(childrenAtAdress);
         ObjectMapper mapper = new ObjectMapper();
@@ -106,23 +112,35 @@ public class PersonService {
 
 
     public List<ChildAlertDTO> findChildAdress2(String address) throws Exception {
-        List<Person> allPeople = list();
+        List<Person> peopleAtAddress = getPeopleAtAddress(address);
 
-        List<Person> peopleAtAddress = allPeople.stream().filter(c -> c.getAddress().equals(address)).collect(Collectors.toList());
-        Mapper mapper = new Mapper();
-        List<Person> childrenAtAddress = mapper.getChildren(peopleAtAddress);
+        List<Person> childrenAtAddress = mapperDTO.getChildren(peopleAtAddress);
 
         List<ChildAlertDTO> alerts = new ArrayList<>();
 
 
         for (Person child : childrenAtAddress
              ) {
-            ChildAlertDTO childAlertDTO = mapper.toDto(child, peopleAtAddress);
+            ChildAlertDTO childAlertDTO = mapperDTO.toChildAlertDto(child, peopleAtAddress);
             alerts.add(childAlertDTO);
         }
 
         return alerts;
     }
+
+    private List<Person> getPeopleAtAddress(String address) throws Exception {
+        List<Person> allPeople = list();
+        return allPeople.stream().filter(c -> c.getAddress().equals(address)).collect(Collectors.toList());
+    }
+
+    public FireDTO peopleToCallIfFire(String address) throws Exception {
+        List<Person> peopleAtAddress = getPeopleAtAddress(address);
+        List<FireStation> fireStations = fireStationAtAddress(address);
+        return mapperDTO.toFireDTO(peopleAtAddress, fireStations);
+
+    }
+
+
 
 
 }

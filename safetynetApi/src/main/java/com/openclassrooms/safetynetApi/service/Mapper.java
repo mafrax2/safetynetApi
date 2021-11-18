@@ -1,7 +1,10 @@
 package com.openclassrooms.safetynetApi.service;
 
-import com.openclassrooms.safetynetApi.model.ChildAlertDTO;
+import com.openclassrooms.safetynetApi.model.FireStation;
+import com.openclassrooms.safetynetApi.model.dto.ChildAlertDTO;
 import com.openclassrooms.safetynetApi.model.Person;
+import com.openclassrooms.safetynetApi.model.dto.FireDTO;
+import com.openclassrooms.safetynetApi.model.dto.FirePersonDTO;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -15,7 +18,7 @@ import java.util.stream.Collectors;
 @Component
 public class Mapper {
 
-    public ChildAlertDTO toDto(Person person, List<Person> house) {
+    public ChildAlertDTO toChildAlertDto(Person person, List<Person> house) {
 
         ChildAlertDTO alert = new ChildAlertDTO();
         alert.setFirstName(person.getFirstName());
@@ -27,6 +30,21 @@ public class Mapper {
         alert.setHousehold(household);
 
         return alert;
+    }
+
+    public FireDTO toFireDTO(List<Person> persons, List<FireStation> fireStations){
+
+        List<FirePersonDTO> firePersonDTOS = persons.stream().map(p -> new FirePersonDTO(p.getFirstName(), p.getLastName(), p.getPhone(), getAge(p.getBirthDate()), p.getMedication(), p.getAllergies())).collect(Collectors.toList());
+
+        int stationNumber = 0;
+        if(fireStations.size()>1){
+            System.out.println("duplicate");
+        } else {
+            stationNumber = fireStations.get(0).getStation();
+        }
+
+        return new FireDTO(stationNumber, firePersonDTOS);
+
     }
 
     public List<Person> getChildren(List<Person> people) {
@@ -47,7 +65,6 @@ public class Mapper {
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
         int years = Period.between( localBirthDate, localDate).getYears();
-
 
         return years;
     }

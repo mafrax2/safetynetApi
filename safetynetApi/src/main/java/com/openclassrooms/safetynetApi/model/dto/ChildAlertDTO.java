@@ -1,4 +1,4 @@
-package com.openclassrooms.safetynetApi.model;
+package com.openclassrooms.safetynetApi.model.dto;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

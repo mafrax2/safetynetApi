@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class FirePersonDTO {
+public class PersonAgeDTO {
 //    le nom, le numéro de téléphone, l'âge et les antécédents
 //médicaux (médicaments, posologie et allergies) de chaque personne.
     private String firstName;

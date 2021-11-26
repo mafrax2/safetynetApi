@@ -5,12 +5,11 @@ import lombok.Data;
 
 import java.util.List;
 
+
 @Data
 @AllArgsConstructor
-public class FireDTO {
+public class FloodDTO {
 
-    private int firesstationNumber;
+    private String firesstationAddress;
     private List<PersonAgeDTO> FirePersonDTOS;
-
-
 }

@@ -1,10 +1,8 @@
 package com.openclassrooms.safetynetApi.service;
 
 import com.openclassrooms.safetynetApi.model.FireStation;
-import com.openclassrooms.safetynetApi.model.dto.ChildAlertDTO;
+import com.openclassrooms.safetynetApi.model.dto.*;
 import com.openclassrooms.safetynetApi.model.Person;
-import com.openclassrooms.safetynetApi.model.dto.FireDTO;
-import com.openclassrooms.safetynetApi.model.dto.FirePersonDTO;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -18,7 +16,22 @@ import java.util.stream.Collectors;
 @Component
 public class Mapper {
 
-    public ChildAlertDTO toChildAlertDto(Person person, List<Person> house) {
+    public static FireStationChildrenCountDTO countAdultsChildren(List<Person> people){
+
+        List<Person> children = getChildren(people);
+
+        int adultCount = people.size()-children.size();
+
+        return new FireStationChildrenCountDTO(children.size(), adultCount, people);
+
+    }
+
+    public static ChildAlertDTO toChildAlertDto(Person person, List<Person> house) throws Exception {
+
+        if (getAge(person.getBirthDate())>18){
+            throw new Exception("Please provide a child as first argument");
+        }
+        if(house.stream().anyMatch(p -> !p.getAddress().equals(person.getAddress()))) throw new Exception("Please provide a list of person living at the same address as second argument ");
 
         ChildAlertDTO alert = new ChildAlertDTO();
         alert.setFirstName(person.getFirstName());
@@ -32,9 +45,9 @@ public class Mapper {
         return alert;
     }
 
-    public FireDTO toFireDTO(List<Person> persons, List<FireStation> fireStations){
+    public static FireDTO toFireDTO(List<Person> persons, List<FireStation> fireStations){
 
-        List<FirePersonDTO> firePersonDTOS = persons.stream().map(p -> new FirePersonDTO(p.getFirstName(), p.getLastName(), p.getPhone(), getAge(p.getBirthDate()), p.getMedication(), p.getAllergies())).collect(Collectors.toList());
+        List<PersonAgeDTO> personAgeDTOS = getPersonAgeDTOS(persons);
 
         int stationNumber = 0;
         if(fireStations.size()>1){
@@ -43,11 +56,21 @@ public class Mapper {
             stationNumber = fireStations.get(0).getStation();
         }
 
-        return new FireDTO(stationNumber, firePersonDTOS);
+        return new FireDTO(stationNumber, personAgeDTOS);
 
     }
 
-    public List<Person> getChildren(List<Person> people) {
+    public static List<PersonAgeDTO> getPersonAgeDTOS(List<Person> persons) {
+        List<PersonAgeDTO> personAgeDTOS = persons.stream().map(p -> new PersonAgeDTO(p.getFirstName(), p.getLastName(), p.getPhone(), getAge(p.getBirthDate()), p.getMedication(), p.getAllergies())).collect(Collectors.toList());
+        return personAgeDTOS;
+    }
+
+    public static List<PersonInfoDTO> getPersonInfoDTOS(List<Person> persons) {
+        List<PersonInfoDTO> personInfoDTO = persons.stream().map(p -> new PersonInfoDTO(p.getFirstName(), p.getLastName(), getAge(p.getBirthDate()), p.getEmail(), p.getMedication(), p.getAllergies())).collect(Collectors.toList());
+        return personInfoDTO;
+    }
+
+    public static List<Person> getChildren(List<Person> people) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         calendar.add(Calendar.YEAR, -18);
@@ -56,7 +79,7 @@ public class Mapper {
         return children;
     }
 
-    public int getAge(Date birthDate) {
+    public static int getAge(Date birthDate) {
 
         LocalDate localBirthDate = birthDate.toInstant()
                 .atZone(ZoneId.systemDefault())

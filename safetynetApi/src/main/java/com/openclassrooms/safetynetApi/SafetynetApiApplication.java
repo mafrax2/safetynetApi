@@ -5,16 +5,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassrooms.safetynetApi.model.FireStation;
 import com.openclassrooms.safetynetApi.model.Person;
-import com.openclassrooms.safetynetApi.service.PersonService;
+import com.openclassrooms.safetynetApi.service.SafetyAppService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.io.InputStream;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +26,7 @@ public class SafetynetApiApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(PersonService personService) {
+	CommandLineRunner runner(SafetyAppService safetyAppService) {
 		return args -> {
 			// read json and write to db
 			ObjectMapper mapper = new ObjectMapper();

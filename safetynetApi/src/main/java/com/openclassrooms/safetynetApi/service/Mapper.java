@@ -66,8 +66,12 @@ public class Mapper {
     }
 
     public static List<PersonInfoDTO> getPersonInfoDTOS(List<Person> persons) {
-        List<PersonInfoDTO> personInfoDTO = persons.stream().map(p -> new PersonInfoDTO(p.getFirstName(), p.getLastName(), getAge(p.getBirthDate()), p.getEmail(), p.getMedication(), p.getAllergies())).collect(Collectors.toList());
+        List<PersonInfoDTO> personInfoDTO = persons.stream().map(p -> getPersonInfoDTO(p)).collect(Collectors.toList());
         return personInfoDTO;
+    }
+
+    public static PersonInfoDTO getPersonInfoDTO(Person p) {
+        return new PersonInfoDTO(p.getFirstName(), p.getLastName(), getAge(p.getBirthDate()), p.getEmail(), p.getMedication(), p.getAllergies());
     }
 
     public static List<Person> getChildren(List<Person> people) {

@@ -144,7 +144,7 @@
 				</executions>
 				<configuration>
 					<excludes>
-						<exclude>none</exclude>
+						<exclude>**/safetynetApi/src/main/java/com/openclassrooms/safetynetApi/model/**/*.class</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

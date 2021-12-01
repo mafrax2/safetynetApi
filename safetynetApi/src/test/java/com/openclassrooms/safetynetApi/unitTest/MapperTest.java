@@ -32,8 +32,7 @@ public class MapperTest {
     @Test
     public void getAgeTest()
     {
-        Mapper mapper = new Mapper();
-        int age = mapper.getAge(person.getBirthDate());
+        int age = Mapper.getAge(person.getBirthDate());
         assertEquals(15, age);
     }
 

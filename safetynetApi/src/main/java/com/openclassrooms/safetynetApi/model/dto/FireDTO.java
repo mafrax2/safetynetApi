@@ -10,7 +10,9 @@ import java.util.List;
 public class FireDTO {
 
     private int firesstationNumber;
-    private List<PersonAgeDTO> FirePersonDTOS;
+    private List<PersonAgeDTO> FirePersonAgeDTOS;
 
 
+    public FireDTO() {
+    }
 }

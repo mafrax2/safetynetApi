@@ -60,7 +60,7 @@ public class SafetyAppService {
 
     }
 
-    public List<Person> extractPersonsFromMap(HashMap<FireStation, List<Person>> map){
+    private List<Person> extractPersonsFromMap(HashMap<FireStation, List<Person>> map){
         ArrayList<Person> allPersons = new ArrayList<>();
 
         for (Map.Entry<FireStation, List<Person>> entry : map.entrySet()

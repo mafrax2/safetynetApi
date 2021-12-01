@@ -3,23 +3,19 @@ package com.openclassrooms.safetynetApi.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Value;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 @Data
-@Entity
 @AllArgsConstructor
-@Table(name = "persons")
 public class Person {
 
-    @Id
-    @GeneratedValue( strategy = GenerationType.AUTO )
-    @JsonIgnore
-    private Long id;
-    @Column(name="first_name")
+
     private String firstName;
-    @Column(name="last_name")
     private String lastName;
     private String address;
     private String city;
@@ -32,7 +28,6 @@ public class Person {
 
     public Person() {
     }
-
 
 
 }

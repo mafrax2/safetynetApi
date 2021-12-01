@@ -12,4 +12,7 @@ public class FloodDTO {
 
     private String firesstationAddress;
     private List<PersonAgeDTO> FirePersonDTOS;
+
+    public FloodDTO() {
+    }
 }

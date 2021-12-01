@@ -12,4 +12,7 @@ public class FireStationChildrenCountDTO {
     private int childrenCount;
     private int adultCount;
     private List<Person> peopleConcerned;
+
+    public FireStationChildrenCountDTO() {
+    }
 }

@@ -1,9 +1,11 @@
 package com.openclassrooms.safetynetApi.model.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Data
+@AllArgsConstructor
 public class ChildAlertDTO {
 
     String firstName;
@@ -14,10 +16,5 @@ public class ChildAlertDTO {
     public ChildAlertDTO() {
     }
 
-    public ChildAlertDTO(String firstName, String lastName, int age, String[] household) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.household = household;
-    }
+
 }

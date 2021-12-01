@@ -25,52 +25,52 @@ public class SafetynetApiApplication {
 		SpringApplication.run(SafetynetApiApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner runner(SafetyAppService safetyAppService) {
-		return args -> {
-			// read json and write to db
-			ObjectMapper mapper = new ObjectMapper();
-//			TypeReference<List<Person>> typeReference = new TypeReference<List<Person>>(){};
-			InputStream inputStream = TypeReference.class.getResourceAsStream("/json/data.json");
-//			try {
-//				List<Person> users = mapper.readValue(inputStream,typeReference);
-//				personService.save(users);
-//				System.out.println("Users Saved!");
-//			} catch (IOException e){
-//				System.out.println("Unable to save users: " + e.getMessage());
+//	@Bean
+//	CommandLineRunner runner(SafetyAppService safetyAppService) {
+//		return args -> {
+//			// read json and write to db
+//			ObjectMapper mapper = new ObjectMapper();
+////			TypeReference<List<Person>> typeReference = new TypeReference<List<Person>>(){};
+//			InputStream inputStream = TypeReference.class.getResourceAsStream("/json/data.json");
+////			try {
+////				List<Person> users = mapper.readValue(inputStream,typeReference);
+////				personService.save(users);
+////				System.out.println("Users Saved!");
+////			} catch (IOException e){
+////				System.out.println("Unable to save users: " + e.getMessage());
+////			}
+//
+//
+//
+//			JsonNode nodes = mapper.readTree(inputStream);
+//
+//
+//			JsonNode persons = nodes.path("persons");
+//			Person[] treeToValue = mapper.treeToValue(persons, Person[].class);
+//			List<Person> people = Arrays.asList(treeToValue);
+//
+//			JsonNode firestations = nodes.path("firestations");
+//			FireStation[] fireStations = mapper.treeToValue(firestations, FireStation[].class);
+//			List<FireStation> stations = Arrays.asList(fireStations);
+//
+//			JsonNode medicalrecordsNodes = nodes.path("medicalrecords");
+//			for (JsonNode record : medicalrecordsNodes ) {
+//				List<Person> collect = people.stream().filter(p -> p.getFirstName().equals(record.path("firstName").asText()) && p.getLastName().equals(record.path("lastName").asText())).collect(Collectors.toList());
+//				if(collect.size()>1){
+//					System.out.println("duplicate");
+//				} else {
+//					Person person = collect.get(0);
+//					String text = record.path("birthdate").asText();
+//					Date date = new SimpleDateFormat("MM/dd/yyyy").parse(text);
+//					person.setBirthDate(date);
+//					person.setAllergies(mapper.treeToValue(record.path("allergies"), String[].class));
+//					person.setMedication(mapper.treeToValue(record.path("medications"), String[].class));
+//				}
 //			}
-
-
-
-			JsonNode nodes = mapper.readTree(inputStream);
-
-
-			JsonNode persons = nodes.path("persons");
-			Person[] treeToValue = mapper.treeToValue(persons, Person[].class);
-			List<Person> people = Arrays.asList(treeToValue);
-
-			JsonNode firestations = nodes.path("firestations");
-			FireStation[] fireStations = mapper.treeToValue(firestations, FireStation[].class);
-			List<FireStation> stations = Arrays.asList(fireStations);
-
-			JsonNode medicalrecordsNodes = nodes.path("medicalrecords");
-			for (JsonNode record : medicalrecordsNodes ) {
-				List<Person> collect = people.stream().filter(p -> p.getFirstName().equals(record.path("firstName").asText()) && p.getLastName().equals(record.path("lastName").asText())).collect(Collectors.toList());
-				if(collect.size()>1){
-					System.out.println("duplicate");
-				} else {
-					Person person = collect.get(0);
-					String text = record.path("birthdate").asText();
-					Date date = new SimpleDateFormat("MM/dd/yyyy").parse(text);
-					person.setBirthDate(date);
-					person.setAllergies(mapper.treeToValue(record.path("allergies"), String[].class));
-					person.setMedication(mapper.treeToValue(record.path("medications"), String[].class));
-				}
-			}
-//			personService.save(people);
-//				System.out.println("Users Saved!");
-
-		};
-	}
+////			personService.save(people);
+////				System.out.println("Users Saved!");
+//
+//		};
+//	}
 }
 

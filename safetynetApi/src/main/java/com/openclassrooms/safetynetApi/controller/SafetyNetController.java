@@ -10,6 +10,7 @@ import java.util.Map;
 
 @RestController
 public class SafetyNetController {
+
      private SafetyAppService safetyAppService;
 
     public SafetyNetController(SafetyAppService safetyAppService) {
@@ -36,7 +37,7 @@ public class SafetyNetController {
 
 
     @GetMapping("/childAlert")
-    public List<ChildAlertDTO> childAlert2(@RequestParam("address") String address) throws Exception {
+    public List<ChildAlertDTO> childAlert(@RequestParam("address") String address) throws Exception {
         return  safetyAppService.findChildAdress(address);
     }
 

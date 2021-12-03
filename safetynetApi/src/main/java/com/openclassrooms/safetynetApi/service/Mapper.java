@@ -28,7 +28,7 @@ public class Mapper {
 
     public static ChildAlertDTO toChildAlertDto(Person person, List<Person> house) throws Exception {
 
-        if (getAge(person.getBirthDate())>18){
+        if (getAge(person.getBirthdate())>18){
             throw new Exception("Please provide a child as first argument");
         }
         if(house.stream().anyMatch(p -> !p.getAddress().equals(person.getAddress()))) throw new Exception("Please provide a list of person living at the same address as second argument ");
@@ -36,8 +36,8 @@ public class Mapper {
         ChildAlertDTO alert = new ChildAlertDTO();
         alert.setFirstName(person.getFirstName());
         alert.setLastName(person.getLastName());
-        alert.setAge(getAge(person.getBirthDate()));
-        List<Person> collect = house.stream().filter(p -> p.getLastName().equals(person.getLastName()) && !p.getFirstName().equals(person.getFirstName())).collect(Collectors.toList());
+        alert.setAge(getAge(person.getBirthdate()));
+        List<Person> collect = house.stream().filter(p -> !p.equals(person)).collect(Collectors.toList());
         List<String> familyMember = collect.stream().map(c -> c.getFirstName() +' '+ c.getLastName()).collect(Collectors.toList());
         String[] household = familyMember.stream().toArray(String[]::new);
         alert.setHousehold(household);
@@ -61,7 +61,7 @@ public class Mapper {
     }
 
     public static List<PersonAgeDTO> getPersonAgeDTOS(List<Person> persons) {
-        List<PersonAgeDTO> personAgeDTOS = persons.stream().map(p -> new PersonAgeDTO(p.getFirstName(), p.getLastName(), p.getPhone(), getAge(p.getBirthDate()), p.getMedication(), p.getAllergies())).collect(Collectors.toList());
+        List<PersonAgeDTO> personAgeDTOS = persons.stream().map(p -> new PersonAgeDTO(p.getFirstName(), p.getLastName(), p.getPhone(), getAge(p.getBirthdate()), p.getMedication(), p.getAllergies())).collect(Collectors.toList());
         return personAgeDTOS;
     }
 
@@ -71,7 +71,7 @@ public class Mapper {
     }
 
     public static PersonInfoDTO getPersonInfoDTO(Person p) {
-        return new PersonInfoDTO(p.getFirstName(), p.getLastName(), getAge(p.getBirthDate()), p.getEmail(), p.getMedication(), p.getAllergies());
+        return new PersonInfoDTO(p.getFirstName(), p.getLastName(), getAge(p.getBirthdate()), p.getEmail(), p.getMedication(), p.getAllergies());
     }
 
     public static List<Person> getChildren(List<Person> people) {
@@ -79,7 +79,7 @@ public class Mapper {
         calendar.setTime(new Date());
         calendar.add(Calendar.YEAR, -18);
         Date date = calendar.getTime();
-        List<Person> children = people.stream().filter(p -> new Date(p.getBirthDate().getTime()).after(date)).collect(Collectors.toList());
+        List<Person> children = people.stream().filter(p -> new Date(p.getBirthdate().getTime()).after(date)).collect(Collectors.toList());
         return children;
     }
 

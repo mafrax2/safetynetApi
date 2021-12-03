@@ -22,7 +22,7 @@ public class Person {
     private int zip;
     private String phone;
     private String email;
-    private Date birthDate;
+    private Date birthdate;
     private String[] allergies;
     private String[] medication;
 

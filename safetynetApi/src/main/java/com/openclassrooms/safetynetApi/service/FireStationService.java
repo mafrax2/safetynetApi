@@ -19,15 +19,19 @@ public class FireStationService {
     }
 
     public void addFireStation(FireStation fireStation) throws IOException {
-       FireStationRepository.addFireStation(fireStation);
+        fireStationRepository.addFireStation(fireStation);
     }
 
     public void editFireStation(FireStation fireStation) throws IOException {
-        FireStationRepository.editFireStationNumber(fireStation);
+        fireStationRepository.editFireStationNumber(fireStation);
     }
 
     public void deleteFireStationbyAdress(String address) throws IOException {
-        FireStationRepository.deleteFireStationByAddress(address);
+        fireStationRepository.deleteFireStationByAddress(address);
+    }
+
+    public void deleteFireStationbyNumber(int station) throws IOException {
+        fireStationRepository.deleteFireStationByNumber(station);
     }
 
 }

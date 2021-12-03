@@ -6,30 +6,40 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.openclassrooms.safetynetApi.model.FireStation;
-import com.openclassrooms.safetynetApi.model.FireStation;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
 import org.springframework.stereotype.Repository;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
-public class FireStationRepository {
+@Log4j2
+@AllArgsConstructor
+public class FireStationRepository extends SafetynetApiRepository{
 
-    public static void deleteFireStationByAddress(String address) throws IOException {
+    private RepositoryWriter writer;
 
-        JsonNode nodes = RepositoryUtil.extractNodes();
+    public FireStationRepository(String resourceLink, ObjectMapper mapper) {
+        super(resourceLink, mapper);
+    }
+
+    public FireStationRepository() {
+    }
+
+    public void deleteFireStationByAddress(String address) throws IOException {
+
+        JsonNode nodes = extractNodes();
         ArrayNode firestations = (ArrayNode) nodes.path("firestations");
         ArrayList<Integer> ids = new ArrayList<>();
         Integer i = 0;
         for (Iterator<JsonNode> it = firestations.elements(); it.hasNext(); ) {
             JsonNode node = it.next();
             if (node.get("address").asText().equals(address) ){
-                System.out.println(address+ " to be removed");
+                log.info(address+ " to be removed");
                 ids.add(i);
             }
             i++;
@@ -38,20 +48,20 @@ public class FireStationRepository {
         ids.sort(Comparator.reverseOrder());
         for (Integer id: ids
         ) {
-            System.out.println(firestations.get(id).path("address").asText() +" has been removed");
+            log.info(firestations.get(id).path("address").asText() +" has been removed");
             firestations.remove(id);
         }
 
-        RepositoryUtil.writeValuesInFile(nodes);
+        writeValuesInFile(nodes);
 
     }
 
 
 
-    public static void deleteFireStationByNumber(int station) throws IOException {
+    public void deleteFireStationByNumber(int station) throws IOException {
 
 
-        JsonNode nodes = RepositoryUtil.extractNodes();
+        JsonNode nodes = extractNodes();
         ArrayNode firestations = (ArrayNode) nodes.path("firestations");
 
         ArrayList<Integer> ids = new ArrayList<>();
@@ -59,7 +69,8 @@ public class FireStationRepository {
         for (Iterator<JsonNode> it = firestations.elements(); it.hasNext(); ) {
             JsonNode node = it.next();
             if (node.get("station").asInt()==station ){
-                System.out.println(station+ " to be removed");
+
+                log.info(station+ " to be removed");
                 ids.add(i);
             }
             i++;
@@ -68,22 +79,23 @@ public class FireStationRepository {
         ids.sort(Comparator.reverseOrder());
         for (Integer id: ids
         ) {
-            System.out.println(firestations.get(id).path("station").asInt() +" has been removed");
+
+            log.info(firestations.get(id).path("station").asInt() +" has been removed");
+
             firestations.remove(id);
         }
 
 
-        RepositoryUtil.writeValuesInFile(nodes);
+        writeValuesInFile(nodes);
 
     }
 
-    public static void editFireStationNumber(FireStation fireStation) throws IOException {
+    public void editFireStationNumber(FireStation fireStation) throws IOException {
 
 
-        JsonNode nodes = RepositoryUtil.extractNodes();
+        JsonNode nodes = extractNodes();
         ArrayNode fireStations = (ArrayNode) nodes.path("firestations");
 
-        boolean found = false;
 
         for (Iterator<JsonNode> it = fireStations.elements(); it.hasNext(); ) {
             JsonNode node = it.next();
@@ -91,25 +103,19 @@ public class FireStationRepository {
                 ((ObjectNode) node).put("address", fireStation.getAddress());
                 ((ObjectNode) node).put("station", Integer.valueOf(fireStation.getStation()).toString())
                 ;
-                found = true;
+
             }
 
         }
 
-        if(!found){
-            ObjectNode jsonNodes = fireStations.addObject();
-            jsonNodes.put("address", fireStation.getAddress());
-            jsonNodes.put("station",Integer.valueOf(fireStation.getStation()).toString() );
-        }
-
-       RepositoryUtil.writeValuesInFile(nodes);
-
+       writeValuesInFile(nodes);
+       log.info("firestation has been edited: "+ fireStation );
     }
 
-    public static void addFireStation(FireStation fireStation) throws IOException {
+    public void addFireStation(FireStation fireStation) throws IOException {
 
 
-        JsonNode nodes = RepositoryUtil.extractNodes();
+        JsonNode nodes = extractNodes();
 
         ArrayNode fireStations = (ArrayNode) nodes.path("firestations");
         ObjectNode jsonNodes = ((ArrayNode) fireStations).addObject();
@@ -119,22 +125,20 @@ public class FireStationRepository {
         jsonNodes.put("address", fireStation.getAddress());
         jsonNodes.put("station",s );
 
-        RepositoryUtil.writeValuesInFile(nodes);
+        writeValuesInFile(nodes);
+        log.info("firestation has been added: "+ fireStation );
     }
 
     public List<FireStation> getFireStations() throws Exception {
         // read json and write to db
-        ObjectMapper mapper = new ObjectMapper();
+        JsonNode nodes = extractNodes();
 
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/json/data.json");
-
-        JsonNode nodes = mapper.readTree(inputStream);
 
 
         JsonNode firestations = nodes.path("firestations");
-        FireStation[] fireStations = mapper.treeToValue(firestations, FireStation[].class);
+        FireStation[] fireStations = this.getMapper().treeToValue(firestations, FireStation[].class);
         List<FireStation> stations = Arrays.asList(fireStations);
-        inputStream.close();
+
         return stations;
 
     }

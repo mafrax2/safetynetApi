@@ -15,10 +15,10 @@ public class FireStationController {
     @Autowired
     FireStationService fireStationService;
 
-//    @GetMapping("/firestation")
-//    public FireStation getFireStation(@RequestParam("address") String address) throws Exception {
-//        return fireStationService.getFireStation(address);
-//    }
+    @GetMapping(value = "/firestation", params = "address" )
+    public FireStation getFireStation(@RequestParam String address) throws Exception {
+        return fireStationService.getFireStation(address);
+    }
 
     @PostMapping(value = "/firestation")
     public ResponseEntity<Void> addFireStation(@RequestBody FireStation fireStation) throws Exception {
@@ -43,9 +43,14 @@ public class FireStationController {
 
     }
 
-    @DeleteMapping(value = "/firestation")
-    public void deleteFireStationByAdress(@RequestParam("address") String address) throws Exception {
+    @DeleteMapping(value = "/firestation", params = "address")
+    public void deleteFireStationByAdress(@RequestParam String address) throws Exception {
         fireStationService.deleteFireStationbyAdress(address);
+    }
+
+    @DeleteMapping(value = "/firestation", params = "station")
+    public void deleteFireStationByStation(@RequestParam int station) throws Exception {
+        fireStationService.deleteFireStationbyNumber(station);
     }
 
 }

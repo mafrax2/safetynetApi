@@ -1,15 +1,24 @@
 package com.openclassrooms.safetynetApi.unitTest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.openclassrooms.safetynetApi.model.FireStation;
+import com.openclassrooms.safetynetApi.model.MedicalRecord;
 import com.openclassrooms.safetynetApi.model.Person;
 import com.openclassrooms.safetynetApi.repository.PersonRepository;
+import com.openclassrooms.safetynetApi.repository.RepositoryWriter;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -18,27 +27,85 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PersonRepositoryTest {
 
+    private static PersonRepository personRepository;
+
+
+
+    @BeforeAll
+    public static void setUp(){
+
+        var relPath = Paths.get("src", "test", "resources", "json", "testdata.json"); // src/test/resources/image.jgp
+        var absPath = relPath.toFile().getAbsolutePath(); // /home/<user>/../<project-root>/src/test/resources/image.jpg
+        var anyFileUnderThisPath = new File(absPath).exists();
+
+        System.out.println(anyFileUnderThisPath);
+
+        personRepository = new PersonRepository(absPath, new ObjectMapper());
+    }
+
+    @AfterEach
+    public void reset() throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        map.put("persons", new Object[]{UnitTestUtil.createPersonJson()});
+        map.put("firestations", new FireStation[]{UnitTestUtil.createFs()});
+        map.put("medicalrecords", new MedicalRecord[]{UnitTestUtil.createMR()});
+
+        // create object mapper instance
+        ObjectMapper mapper = new ObjectMapper();
+
+        mapper.writeValue(Paths.get(personRepository.getResourceLink()).toFile(), map);
+
+    }
+
     @Test
     public void getPeopleListTest() throws Exception {
 
-        PersonRepository personRepository = new PersonRepository("/json/testdata.json");
         List<Person> peopleList = personRepository.getPeopleList();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-
-        String dateInString = "12-FEB-1992";
-
-        Date date = formatter.parse(dateInString);
-
-        String[] allergies = new String[1];
-        allergies[0] = "nillacilan";
-        String[] medication = new String[]{"aznol:350mg", "hydrapermazol:100mg"};
-        Person person1 = new Person("marc", "marc", "1509 Culver St", "Culver", 97451, "841-874-6512", "jaboyd@email.com", date, allergies, medication);
+        Person person1 = UnitTestUtil.createPerson();
         List<Person> expected = new ArrayList<>();
         expected.add(person1);
 
         assertEquals(expected, peopleList);
 
     }
+
+    @Test
+    public void editPersonTest() throws Exception {
+
+        Person person = UnitTestUtil.createPerson();
+        person.setAddress("here");
+
+        personRepository.editPerson(person);
+        Person personByName = personRepository.getPersonByName("marc", "marc");
+
+        assertEquals(personByName, person);
+
+
+    }
+
+    @Test
+    public void addPersonTest() throws Exception {
+
+        Person person = new Person("prenom", "nom", "adresse", "ville", 75, "tel", "email", null, null, null);
+        personRepository.addPerson(person);
+        Person personByName = personRepository.getPersonByName("prenom", "nom");
+
+        assertEquals(personByName, person);
+
+    }
+
+    @Test
+    public void deletePersonTest() throws Exception {
+
+        personRepository.deletePerson("marc", "marc");
+        Person personByName = personRepository.getPersonByName("marc", "marc");
+
+        assertNull(personByName);
+
+    }
+
+
+
 
 }

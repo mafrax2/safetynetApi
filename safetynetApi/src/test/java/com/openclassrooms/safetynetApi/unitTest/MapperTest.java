@@ -5,13 +5,10 @@ import com.openclassrooms.safetynetApi.service.Mapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 public class MapperTest {
 
@@ -24,7 +21,7 @@ public class MapperTest {
         calendar.setTime(new Date());
         calendar.add(Calendar.YEAR, -15);
         Date date = calendar.getTime();
-        person.setBirthDate(date);
+        person.setBirthdate(date);
 
     }
 
@@ -32,7 +29,7 @@ public class MapperTest {
     @Test
     public void getAgeTest()
     {
-        int age = Mapper.getAge(person.getBirthDate());
+        int age = Mapper.getAge(person.getBirthdate());
         assertEquals(15, age);
     }
 

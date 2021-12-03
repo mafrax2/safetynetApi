@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.openclassrooms.safetynetApi.model.FireStation;
 import com.openclassrooms.safetynetApi.model.Person;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,36 +14,33 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
 @Repository
-public class PersonRepository {
+public class PersonRepository extends SafetynetApiRepository {
 
-    @Value("${json.path:}")
-    private String resourceLink;
 
-    public PersonRepository() {
+    public PersonRepository(String resourceLink, ObjectMapper mapper) {
+        super(resourceLink, mapper);
     }
 
-    public PersonRepository(String resourceLink) {
-        this.resourceLink = resourceLink;
+    public PersonRepository() {
+        super();
     }
 
     public List<Person> getPeopleList() throws Exception {
-        // read json and write to db
-        ObjectMapper mapper = new ObjectMapper();
 
-        InputStream inputStream = TypeReference.class.getResourceAsStream(resourceLink);
+//        InputStream inputStream = TypeReference.class.getResourceAsStream(this.getResourceLink());
+//
+//        JsonNode nodes = this.getMapper().readTree(inputStream);
 
-        JsonNode nodes = mapper.readTree(inputStream);
-
+        JsonNode nodes = extractNodes();
 
         JsonNode persons = nodes.path("persons");
-        Person[] treeToValue = mapper.treeToValue(persons, Person[].class);
+        Person[] treeToValue = this.getMapper().treeToValue(persons, Person[].class);
         List<Person> people = Arrays.asList(treeToValue);
 
         JsonNode medicalrecordsNodes = nodes.path("medicalrecords");
@@ -56,9 +52,9 @@ public class PersonRepository {
                 Person person = collect.get(0);
                 String text = record.path("birthdate").asText();
                 Date date = new SimpleDateFormat("MM/dd/yyyy").parse(text);
-                person.setBirthDate(date);
-                person.setAllergies(mapper.treeToValue(record.path("allergies"), String[].class));
-                person.setMedication(mapper.treeToValue(record.path("medications"), String[].class));
+                person.setBirthdate(date);
+                person.setAllergies(this.getMapper().treeToValue(record.path("allergies"), String[].class));
+                person.setMedication(this.getMapper().treeToValue(record.path("medications"), String[].class));
             }
         }
 
@@ -66,7 +62,7 @@ public class PersonRepository {
     }
 
     public void addPerson(Person person) throws IOException {
-        JsonNode nodes = RepositoryUtil.extractNodes();
+        JsonNode nodes = this.extractNodes();
         ArrayNode persons = (ArrayNode) nodes.path("persons");
         ObjectNode jsonNodes = ((ArrayNode) persons).addObject();
         jsonNodes.put("firstName", person.getFirstName());
@@ -78,17 +74,14 @@ public class PersonRepository {
         jsonNodes.put("email", person.getEmail());
 
 
-        RepositoryUtil.writeValuesInFile(nodes);
+        this.writeValuesInFile(nodes);
 
     }
 
     public void editPerson(Person person) throws IOException {
-        JsonNode nodes = RepositoryUtil.extractNodes();
+        JsonNode nodes = this.extractNodes();
 
         ArrayNode persons = (ArrayNode) nodes.path("persons");
-
-
-
 
         for (Iterator<JsonNode> it = persons.elements(); it.hasNext(); ) {
             JsonNode node = it.next();
@@ -104,12 +97,17 @@ public class PersonRepository {
 
         }
 
-     RepositoryUtil.writeValuesInFile(nodes);
+        File resultFile = new File(getResourceLink());
+        FileOutputStream fileOutputStream = new FileOutputStream(resultFile);
+        resultFile.mkdirs();
+        this.getMapper().writeValue(resultFile, nodes);
+
+        fileOutputStream.close();
 
     }
 
     public void deletePerson(String firstName, String lastName) throws IOException {
-        JsonNode nodes = RepositoryUtil.extractNodes();
+        JsonNode nodes = this.extractNodes();
         ArrayNode persons = (ArrayNode) nodes.path("persons");
 
         ArrayList<Integer> ids = new ArrayList<>();
@@ -131,7 +129,7 @@ ids.sort(Comparator.reverseOrder());
             persons.remove(id);
         }
 
-       RepositoryUtil.writeValuesInFile(nodes);
+       this.writeValuesInFile(nodes);
 
     }
 

@@ -64,7 +64,7 @@ public class SafetyAppServiceTest {
         String[] medication = new String[1];
         medication[0] = "medication1: 6g";
         Person person1 = new Person();
-        person1.setBirthDate(birthdate1);
+        person1.setBirthdate(birthdate1);
         person1.setAllergies(allergies);
         person1.setMedication(medication);
         person1.setAddress("here");

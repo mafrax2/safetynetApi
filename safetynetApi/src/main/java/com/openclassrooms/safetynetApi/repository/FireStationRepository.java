@@ -1,6 +1,5 @@
 package com.openclassrooms.safetynetApi.repository;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -12,23 +11,22 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
 @Log4j2
-@AllArgsConstructor
 public class FireStationRepository extends SafetynetApiRepository{
 
-    private RepositoryWriter writer;
 
     public FireStationRepository(String resourceLink, ObjectMapper mapper) {
         super(resourceLink, mapper);
     }
 
     public FireStationRepository() {
+    super();
     }
+
 
     public void deleteFireStationByAddress(String address) throws IOException {
 

@@ -1,36 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" monitorInterval="5">
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+        </Property>
+    </Properties>
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout
-                    pattern="[%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ}] %p %style{%m}{bright,blue}%n" />
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-
-        <RollingFile name="RollingFile"
-                     fileName="./logs/spring-boot-logger-log4j2.log"
-                     filePattern="./logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
+        <RollingFile name="FileAppender" fileName="logs/log4j2-demo.log"
+                     filePattern="logs/log4j2-demo-%d{yyyy-MM-dd}-%i.log">
             <PatternLayout>
-                    <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+                <Pattern>${LOG_PATTERN}</Pattern>
             </PatternLayout>
             <Policies>
-
-                <OnStartupTriggeringPolicy />
-                <SizeBasedTriggeringPolicy
-                        size="10 MB" />
-                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10MB" />
             </Policies>
+            <DefaultRolloverStrategy max="10"/>
         </RollingFile>
     </Appenders>
-
     <Loggers>
+        <Logger name="com.example.log4j2demo" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleAppender" />
+        </Logger>
 
-        <!-- LOG everything at INFO level -->
         <Root level="info">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="RollingFile" />
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="FileAppender"/>
         </Root>
-
-
     </Loggers>
-
 </Configuration>

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.openclassrooms.safetynetApi.model.Person;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 
 
 @Repository
+@Log4j2
 public class PersonRepository extends SafetynetApiRepository {
 
 
@@ -33,10 +35,6 @@ public class PersonRepository extends SafetynetApiRepository {
 
     public List<Person> getPeopleList() throws Exception {
 
-//        InputStream inputStream = TypeReference.class.getResourceAsStream(this.getResourceLink());
-//
-//        JsonNode nodes = this.getMapper().readTree(inputStream);
-
         JsonNode nodes = extractNodes();
 
         JsonNode persons = nodes.path("persons");
@@ -48,6 +46,7 @@ public class PersonRepository extends SafetynetApiRepository {
             List<Person> collect = people.stream().filter(p -> p.getFirstName().equals(record.path("firstName").asText()) && p.getLastName().equals(record.path("lastName").asText())).collect(Collectors.toList());
             if(collect.size()>1){
                 System.out.println("duplicate");
+                log.warn("found duplicate person " + collect.get(0));
             } else if (!collect.isEmpty()){
                 Person person = collect.get(0);
                 String text = record.path("birthdate").asText();
@@ -75,6 +74,7 @@ public class PersonRepository extends SafetynetApiRepository {
 
 
         this.writeValuesInFile(nodes);
+        log.info("person added : " + person);
 
     }
 
@@ -97,12 +97,8 @@ public class PersonRepository extends SafetynetApiRepository {
 
         }
 
-        File resultFile = new File(getResourceLink());
-        FileOutputStream fileOutputStream = new FileOutputStream(resultFile);
-        resultFile.mkdirs();
-        this.getMapper().writeValue(resultFile, nodes);
-
-        fileOutputStream.close();
+       writeValuesInFile(nodes);
+        log.info("person edited : " + person);
 
     }
 
@@ -116,11 +112,12 @@ public class PersonRepository extends SafetynetApiRepository {
             JsonNode node = it.next();
             if (node.get("firstName").asText().equals(firstName) && node.get("lastName").asText().equals(lastName)){
                 System.out.println(firstName+" "+lastName + " to be removed");
-//                persons.remove(i);
                 ids.add(i);
             }
         i++;
         }
+
+        log.info("found " + ids.size() +" persons to delete");
 
 ids.sort(Comparator.reverseOrder());
         for (Integer id: ids
@@ -130,6 +127,8 @@ ids.sort(Comparator.reverseOrder());
         }
 
        this.writeValuesInFile(nodes);
+
+        log.info("person deleted :" + firstName +" "+ lastName);
 
     }
 

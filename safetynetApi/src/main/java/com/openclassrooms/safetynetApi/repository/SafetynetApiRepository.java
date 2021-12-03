@@ -27,9 +27,6 @@ public class SafetynetApiRepository {
     }
 
     public JsonNode extractNodes() throws IOException {
-//        mapper = new ObjectMapper();
-//
-//        File file = new File("safetynetApi/src/main/resources"+resourceLink);
         File file = new File(resourceLink);
         file.mkdirs();
         InputStream inputStream = TypeReference.class.getResourceAsStream(resourceLink);
@@ -38,7 +35,6 @@ public class SafetynetApiRepository {
 
     public void writeValuesInFile(JsonNode nodes) throws IOException {
 
-//        File resultFile = new File("safetynetApi/src/main/resources"+resourceLink);
         File resultFile = new File(resourceLink);
         resultFile.mkdirs();
         FileOutputStream fileOutputStream = new FileOutputStream(resultFile);

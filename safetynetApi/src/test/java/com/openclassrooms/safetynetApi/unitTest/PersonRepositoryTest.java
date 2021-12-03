@@ -1,25 +1,16 @@
 package com.openclassrooms.safetynetApi.unitTest;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openclassrooms.safetynetApi.model.FireStation;
 import com.openclassrooms.safetynetApi.model.MedicalRecord;
 import com.openclassrooms.safetynetApi.model.Person;
 import com.openclassrooms.safetynetApi.repository.PersonRepository;
-import com.openclassrooms.safetynetApi.repository.RepositoryWriter;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Paths;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;

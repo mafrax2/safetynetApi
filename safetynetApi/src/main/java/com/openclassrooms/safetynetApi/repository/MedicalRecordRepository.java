@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.openclassrooms.safetynetApi.model.MedicalRecord;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
@@ -14,12 +15,16 @@ import java.io.InputStream;
 import java.util.*;
 
 @Repository
-@AllArgsConstructor
+@Log4j2
 public class MedicalRecordRepository extends SafetynetApiRepository{
 
 
     public MedicalRecordRepository(String resourceLink, ObjectMapper mapper) {
         super(resourceLink, mapper);
+    }
+
+    public MedicalRecordRepository() {
+        super();
     }
 
     public void deleteMedicalRecord(String firstName, String lastName) throws IOException {
@@ -101,14 +106,13 @@ public class MedicalRecordRepository extends SafetynetApiRepository{
     }
 
     public List<MedicalRecord> getMedicalRecords() throws Exception {
-        // read json and write to db
-        ObjectMapper mapper = new ObjectMapper();
+
 
         JsonNode nodes = extractNodes();
 
 
         JsonNode medicalrecords = nodes.path("medicalrecords");
-        MedicalRecord[] medicalRecordsArray = mapper.treeToValue(medicalrecords, MedicalRecord[].class);
+        MedicalRecord[] medicalRecordsArray = getMapper().treeToValue(medicalrecords, MedicalRecord[].class);
         List<MedicalRecord> stations = Arrays.asList(medicalRecordsArray);
         return stations;
 

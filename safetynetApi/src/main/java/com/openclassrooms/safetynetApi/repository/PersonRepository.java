@@ -61,7 +61,9 @@ public class PersonRepository extends SafetynetApiRepository {
     }
 
     public void addPerson(Person person) throws IOException {
-        JsonNode nodes = this.extractNodes();
+
+        JsonNode nodes = extractNodes();
+
         ArrayNode persons = (ArrayNode) nodes.path("persons");
         ObjectNode jsonNodes = ((ArrayNode) persons).addObject();
         jsonNodes.put("firstName", person.getFirstName());

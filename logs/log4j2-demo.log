@@ -1,0 +1,142 @@
+2021-12-03 11:34:31.536  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 8916 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-03 11:34:31.551  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-03 11:34:34.006  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-03 11:34:37.188  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-03 11:34:37.208  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Started SafetynetApiApplication in 6.441 seconds (JVM running for 7.621)
+2021-12-03 11:34:37.222  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Info log
+2021-12-03 11:34:37.222  WARN LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Hey, This is a warning!
+2021-12-03 11:34:37.222 ERROR LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Oops! We have an Error. OK
+2021-12-03 11:34:37.222 FATAL LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Damn! Fatal error. Please fix me.
+2021-12-03 11:35:59.376  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 15720 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-03 11:35:59.387  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-03 11:36:01.214  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-03 11:36:03.780  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-03 11:36:03.801  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Started SafetynetApiApplication in 5.025 seconds (JVM running for 5.914)
+2021-12-03 11:36:03.817  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Info log
+2021-12-03 11:36:03.817  WARN LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Hey, This is a warning!
+2021-12-03 11:36:03.817 ERROR LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Oops! We have an Error. OK
+2021-12-03 11:36:03.818 FATAL LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Damn! Fatal error. Please fix me.
+2021-12-03 11:40:49.864  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 17436 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-03 11:40:49.874  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-03 11:40:51.763  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-03 11:40:54.271  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-03 11:40:54.291  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Started SafetynetApiApplication in 4.976 seconds (JVM running for 6.027)
+2021-12-03 11:41:08.274  INFO LAPTOP-30S95CKN --- [nio-8080-exec-2] c.o.s.r.FireStationRepository            : firestation has been added: FireStation(address=here, station=4)
+2021-12-03 11:41:13.559  INFO LAPTOP-30S95CKN --- [nio-8080-exec-3] c.o.s.r.FireStationRepository            : firestation has been edited: FireStation(address=here, station=2)
+2021-12-03 11:41:17.120  INFO LAPTOP-30S95CKN --- [nio-8080-exec-4] c.o.s.r.FireStationRepository            : here to be removed
+2021-12-03 11:41:17.120  INFO LAPTOP-30S95CKN --- [nio-8080-exec-4] c.o.s.r.FireStationRepository            : here has been removed
+2021-12-03 11:45:07.553  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 13744 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-03 11:45:07.570  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-03 11:45:09.935  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-03 11:45:13.056  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-03 11:45:13.076  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Started SafetynetApiApplication in 6.311 seconds (JVM running for 7.501)
+2021-12-03 11:54:08.472  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 23292 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-03 11:54:08.487  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-03 11:54:10.476  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-03 11:54:12.213 ERROR LAPTOP-30S95CKN --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.openclassrooms.safetynetApi.repository.FireStationRepository required a bean of type 'java.lang.String' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2021-12-03 11:55:13.344  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 23644 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-03 11:55:13.363  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-03 11:55:15.522  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-03 11:55:17.269 ERROR LAPTOP-30S95CKN --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.openclassrooms.safetynetApi.repository.MedicalRecordRepository required a bean of type 'java.lang.String' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2021-12-03 11:55:48.446  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 14244 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-03 11:55:48.456  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-03 11:55:50.842  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-03 11:55:52.550 ERROR LAPTOP-30S95CKN --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.openclassrooms.safetynetApi.repository.MedicalRecordRepository required a bean of type 'java.lang.String' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2021-12-03 11:56:16.230  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 3680 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-03 11:56:16.240  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-03 11:56:18.323  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-03 11:56:20.065 ERROR LAPTOP-30S95CKN --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.openclassrooms.safetynetApi.repository.MedicalRecordRepository required a bean of type 'java.lang.String' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'java.lang.String' in your configuration.
+
+2021-12-03 11:56:49.089  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 10208 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-03 11:56:49.103  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-03 11:56:51.178  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-03 11:56:53.714  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-03 11:56:53.734  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Started SafetynetApiApplication in 5.416 seconds (JVM running for 6.587)
+2021-12-03 11:57:07.100  INFO LAPTOP-30S95CKN --- [nio-8080-exec-2] c.o.s.r.PersonRepository                 : person added : Person(firstName=marc, lastName=marc, address=1509 Culver St, city=Culver, zip=97451, phone=841-874-6512, email=jaboyd@email.com, birthdate=null, allergies=null, medication=null)
+2021-12-03 11:57:10.582  INFO LAPTOP-30S95CKN --- [nio-8080-exec-3] c.o.s.r.PersonRepository                 : person edited : Person(firstName=marc, lastName=marc, address=here, city=Culver, zip=97451, phone=841-874-6512, email=jaboyd@email.com, birthdate=null, allergies=null, medication=null)
+2021-12-03 11:57:14.149  INFO LAPTOP-30S95CKN --- [nio-8080-exec-4] c.o.s.r.PersonRepository                 : found 1 persons to delete
+2021-12-03 11:57:14.157  INFO LAPTOP-30S95CKN --- [nio-8080-exec-4] c.o.s.r.PersonRepository                 : person deleted :marc marc
+2021-12-09 16:13:31.934  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 25020 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-09 16:13:31.950  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-09 16:13:33.911  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-09 16:13:36.193  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-09 16:13:36.223  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Started SafetynetApiApplication in 4.946 seconds (JVM running for 6.093)
+2021-12-09 16:14:12.002  INFO LAPTOP-30S95CKN --- [nio-8080-exec-1] c.o.s.c.FireStationController            : received POST request at /firestation for :FireStation(address=here, station=4)
+2021-12-09 16:14:12.046  INFO LAPTOP-30S95CKN --- [nio-8080-exec-1] c.o.s.r.FireStationRepository            : firestation has been added: FireStation(address=here, station=4)
+2021-12-09 16:14:27.822  INFO LAPTOP-30S95CKN --- [nio-8080-exec-3] c.o.s.c.FireStationController            : received PUT request at /firestation for :FireStation(address=here, station=2)
+2021-12-09 16:14:27.828  INFO LAPTOP-30S95CKN --- [nio-8080-exec-3] c.o.s.r.FireStationRepository            : firestation has been edited: FireStation(address=here, station=2)
+2021-12-09 16:14:37.757  INFO LAPTOP-30S95CKN --- [nio-8080-exec-4] c.o.s.c.FireStationController            : received DELETE request for /firestation?adress=here
+2021-12-09 16:14:37.760  INFO LAPTOP-30S95CKN --- [nio-8080-exec-4] c.o.s.r.FireStationRepository            : here to be removed
+2021-12-09 16:14:37.760  INFO LAPTOP-30S95CKN --- [nio-8080-exec-4] c.o.s.r.FireStationRepository            : here has been removed
+2021-12-09 16:25:31.961  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Starting SafetynetApiApplication using Java 17 on LAPTOP-30S95CKN with PID 27916 (C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi\safetynetApi\target\classes started by marc in C:\Users\marc\Documents\openclassroom\Projet5\safetynetApi)
+2021-12-09 16:25:31.972  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : No active profile set, falling back to default profiles: default
+2021-12-09 16:25:33.659  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2021-12-09 16:25:36.207  INFO LAPTOP-30S95CKN --- [           main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-09 16:25:36.227  INFO LAPTOP-30S95CKN --- [           main] c.o.s.SafetynetApiApplication            : Started SafetynetApiApplication in 4.761 seconds (JVM running for 5.589)

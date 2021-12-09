@@ -1,17 +1,17 @@
 URLS
-http://localhost:8080/firestation?stationNumber=<station_number>
+http://localhost:8080/firestation?stationNumber=1
 
-http://localhost:8080/childAlert?address=<address>
+http://localhost:8080/childAlert?address=1509 Culver St
 
-http://localhost:8080/phoneAlert?firestation=<firestation_number>
+http://localhost:8080/phoneAlert?firestation=1
 
-http://localhost:8080/fire?address=<address>
+http://localhost:8080/fire?address=1509 Culver St
 
-http://localhost:8080/flood/stations?stations=<a list of station_numbers>
+http://localhost:8080/flood/stations?stations=1,2,3
 
-http://localhost:8080/personInfo?firstName=<firstName>&lastName=<lastName>
+http://localhost:8080/personInfo?firstName=John&lastName=Boyd
 
-http://localhost:8080/communityEmail?city=<city>
+http://localhost:8080/communityEmail?city=Culver
 
 ENDPOINTS
 http://localhost:8080/person

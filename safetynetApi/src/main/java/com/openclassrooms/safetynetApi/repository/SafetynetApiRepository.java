@@ -29,7 +29,6 @@ public class SafetynetApiRepository {
     public JsonNode extractNodes() throws IOException {
         File file = new File(resourceLink);
         file.mkdirs();
-        InputStream inputStream = TypeReference.class.getResourceAsStream(resourceLink);
         return mapper.readTree(file);
     }
 

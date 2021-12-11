@@ -1,4 +1,4 @@
-package com.openclassrooms.safetynetApi.model.dto;
+package com.openclassrooms.safetynetApi.dto;
 
 import com.openclassrooms.safetynetApi.model.Person;
 import lombok.AllArgsConstructor;

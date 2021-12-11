@@ -1,6 +1,6 @@
 package com.openclassrooms.safetynetApi.service;
 
-import com.openclassrooms.safetynetApi.model.dto.*;
+import com.openclassrooms.safetynetApi.dto.*;
 import com.openclassrooms.safetynetApi.model.FireStation;
 import com.openclassrooms.safetynetApi.model.Person;
 import com.openclassrooms.safetynetApi.repository.FireStationRepository;
@@ -8,7 +8,6 @@ import com.openclassrooms.safetynetApi.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -162,7 +161,7 @@ public class SafetyAppService {
     public String[] getCityPhones(String city) throws Exception {
 
         List<Person> allPeople = list();
-        List<String> phonesList = list().stream().filter(p -> p.getCity().toLowerCase(Locale.ROOT).equals(city.toLowerCase(Locale.ROOT))).map(Person::getPhone).collect(Collectors.toList());
+        List<String> phonesList = list().stream().filter(p -> p.getCity().toLowerCase(Locale.ROOT).equals(city.toLowerCase(Locale.ROOT))).map(Person::getEmail).collect(Collectors.toList());
         return phonesList.toArray(String[]::new);
 
     }

@@ -24,7 +24,7 @@ public class UnitTestUtil {
     }
 
     public static  Map<String, Object> createCustomPersonJson(String firstName, String lastName, String address, String city, String zip, String phone, String email) throws ParseException {
-        HashMap<String, Object> personMap = new HashMap<>();
+        TreeMap<String, Object> personMap = new TreeMap<>();
         personMap.put("firstName", firstName);
         personMap.put("lastName", lastName);
         personMap.put("address", address);
@@ -36,7 +36,7 @@ public class UnitTestUtil {
     }
 
     public static Map<String, Object> createPersonJson(){
-        HashMap<String, Object> personMap = new HashMap<>();
+        TreeMap<String, Object> personMap = new TreeMap<>();
         personMap.put("firstName", "marc");
         personMap.put("lastName", "marc");
         personMap.put("address", "1509 Culver St");

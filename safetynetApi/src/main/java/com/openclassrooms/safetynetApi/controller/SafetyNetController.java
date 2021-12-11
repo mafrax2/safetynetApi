@@ -1,13 +1,12 @@
 package com.openclassrooms.safetynetApi.controller;
 
-import com.openclassrooms.safetynetApi.model.dto.*;
+import com.openclassrooms.safetynetApi.dto.*;
 import com.openclassrooms.safetynetApi.model.Person;
 import com.openclassrooms.safetynetApi.service.SafetyAppService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @Log4j2

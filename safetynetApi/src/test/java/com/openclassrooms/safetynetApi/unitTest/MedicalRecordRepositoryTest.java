@@ -39,7 +39,7 @@ public class MedicalRecordRepositoryTest {
     @AfterEach
     public void reset() throws Exception {
         Map<String, Object> map = new HashMap<>();
-        map.put("MedicalRecords", new Object[]{UnitTestUtil.createPersonJson()});
+        map.put("persons", new Object[]{UnitTestUtil.createPersonJson()});
         map.put("firestations", new FireStation[]{UnitTestUtil.createFs()});
         map.put("medicalrecords", new MedicalRecord[]{UnitTestUtil.createMR()});
 

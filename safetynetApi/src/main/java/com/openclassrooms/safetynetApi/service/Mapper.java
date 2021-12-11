@@ -1,7 +1,7 @@
 package com.openclassrooms.safetynetApi.service;
 
 import com.openclassrooms.safetynetApi.model.FireStation;
-import com.openclassrooms.safetynetApi.model.dto.*;
+import com.openclassrooms.safetynetApi.dto.*;
 import com.openclassrooms.safetynetApi.model.Person;
 import org.springframework.stereotype.Component;
 

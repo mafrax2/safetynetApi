@@ -1,4 +1,4 @@
-package com.openclassrooms.safetynetApi.model.dto;
+package com.openclassrooms.safetynetApi.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

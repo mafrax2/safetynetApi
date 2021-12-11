@@ -2,7 +2,7 @@ package com.openclassrooms.safetynetApi.unitTest;
 
 import com.openclassrooms.safetynetApi.model.FireStation;
 import com.openclassrooms.safetynetApi.model.Person;
-import com.openclassrooms.safetynetApi.model.dto.*;
+import com.openclassrooms.safetynetApi.dto.*;
 import com.openclassrooms.safetynetApi.repository.FireStationRepository;
 import com.openclassrooms.safetynetApi.repository.PersonRepository;
 import com.openclassrooms.safetynetApi.service.Mapper;

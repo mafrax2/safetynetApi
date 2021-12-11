@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,7 @@ import java.io.InputStream;
 @Data
 @AllArgsConstructor
 @Repository
+@Log4j2
 public class SafetynetApiRepository {
 
     @Value("${json.path:}")
@@ -29,7 +31,9 @@ public class SafetynetApiRepository {
     public JsonNode extractNodes() throws IOException {
         File file = new File(resourceLink);
         file.mkdirs();
-        return mapper.readTree(file);
+        JsonNode jsonNode = mapper.readTree(file);
+
+        return jsonNode;
     }
 
     public void writeValuesInFile(JsonNode nodes) throws IOException {

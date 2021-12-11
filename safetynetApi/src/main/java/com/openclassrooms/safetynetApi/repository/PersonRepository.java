@@ -83,7 +83,12 @@ public class PersonRepository extends SafetynetApiRepository {
     public void editPerson(Person person) throws IOException {
         JsonNode nodes = this.extractNodes();
 
-        ArrayNode persons = (ArrayNode) nodes.path("persons");
+        JsonNode jsonNode = nodes.path("persons");
+        if(jsonNode.isEmpty()){
+            log.error("no person found");
+            throw new IOException("no person found");
+        }
+        ArrayNode persons = (ArrayNode) jsonNode;
 
         for (Iterator<JsonNode> it = persons.elements(); it.hasNext(); ) {
             JsonNode node = it.next();
